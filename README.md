@@ -79,10 +79,54 @@ The ownership of the directory was assigned with the current user
 
 **`sudo chown -R &USER:$USER /var/www/projectlamp`**
 
-A new index file was created inside the web root folder. The following PHP code was added to the blank text
+A new configuration file was created and opened in Apache's sites-available directory
 
-**`vim /var/www/projectlamp/index.php`**
-<?php
-phpinfo();
+**`sudo vi /etc/apache2/sites-available/projectlamp.conf`**
 
-**`sudo vi /etc/apache2/sites`**
+The created file is blank and the following command is pasted in the file.
+
+**<VirtualHost *:80>***
+    **ServerName projectlamp**
+    **ServerAlias www.projectlamp** 
+    **ServerAdmin webmaster@localhost**
+    **DocumentRoot /var/www/projectlamp**
+    **ErrorLog ${APACHE_LOG_DIR}/error.log**
+    **CustomLog ${APACHE_LOG_DIR}/access.log combined**
+**</VirtualHost>**
+
+The ls command below was used to list the files in the directory
+
+**`sudo ls /etc/apache2/sites-available`**
+
+<img width="527" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/e061ee1b-de19-45f3-a88c-224bfa780b4d">
+
+The new virual host is enable with a2ensite command
+
+**`sudo a2ensite projectlamp`**
+
+<img width="342" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/64f5eaef-4939-4b04-8b87-3c49baa32cba">
+
+The default site was disable with a a2dissite command
+
+**`sudo a2dissite projectlamp`**
+
+<img width="352" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/cb20c63e-abf1-4c3d-a0f1-21a88aff93ed">
+
+The command below was ran to check for syntax errors in the configuration file
+
+**`sudo apache2ctl configtest`**
+
+<img width="306" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/2512ccc1-5eaf-4bee-890f-98931abca14f">
+
+The Apache service was reloaded for changes to take effect
+
+creating an index file in the projectlamp folder using the command below
+
+**`sudo echo 'Hello LAMP from hostname' $(curl -s http://169.254.169.254/latest/meta-data/public-hostname) 'with public IP' $(curl -s http://169.254.169.254/latest/meta-data/public-ipv4) > /var/www/projectlamp/index.html`**
+
+The website was accessed on the browser using the public IP Address: **`http://13.53.89.180:80`** though it works without the port number. DNS name can also be use to access the website.
+
+<img width="604" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/9856de95-43e6-4aef-bb95-f86b6aada8ce">
+
+
+
