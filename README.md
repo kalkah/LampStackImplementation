@@ -43,3 +43,19 @@ I also conirmed that the Apache webserver can be access from the internet using 
 The following command was used to log in to the MySQL console
 
 **`sudo mysql`**
+
+<img width="486" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/a0b7fae8-3d83-4af1-8dda-6f6b8fa6ab41">
+
+A root user password was set using mysql_native_password as default authentication method.
+
+**`ALTER USER 'root'@'localhost' IDENTIFIED WITH mysql_native_password BY 'Password.1';`**
+
+I exit the MySQL console to start MYSQL interactive script using the command below. This remove some insecure default settings and lock down access to the database system. This script also prompt me to configure the validate password plugin.
+
+**`sudo mysql_secure_installation`**
+The command below was used to test login access to the MYSQL console
+
+**`sudo mysql -p`** -p flag prompt me for password.
+
+<img width="559" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/33687bb9-8087-4b61-afcd-1d0ea4c710ec">
+
