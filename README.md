@@ -59,3 +59,30 @@ The command below was used to test login access to the MYSQL console
 
 <img width="559" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/33687bb9-8087-4b61-afcd-1d0ea4c710ec">
 
+### The fourth technology in the stack is PHP. PHP process code to display dynamic content to the end user.  PHP was installed with the command below
+
+**`sudo apt install php libaapache2-mod-php php-mysql`** php-mysql is a php module that allow php to communicate with MySQL-based databases. libapache2-mod-php module enable Apache to handle PHP files.
+
+This command **`php -v`** was run to confirm the version of my PHP
+
+<img width="434" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/874794b2-ec97-46d4-8e6b-8da9be01842b">
+
+The LAMP stack is completely installed and operational. Apache Virtual Host that hold website files and folder is needed to test the stack with a PHP script.
+
+### CREATING A VIRTUAL HOST FOR THE WEBSITE USINF APACHE
+
+Directory was created for projectlamp
+
+**`sudo mkdir /var/www/projectlamp`**
+
+The ownership of the directory was assigned with the current user
+
+**`sudo chown -R &USER:$USER /var/www/projectlamp`**
+
+A new index file was created inside the web root folder. The following PHP code was added to the blank text
+
+**`vim /var/www/projectlamp/index.php`**
+<?php
+phpinfo();
+
+**`sudo vi /etc/apache2/sites`**
