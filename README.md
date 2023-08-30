@@ -69,6 +69,44 @@ This command **`php -v`** was run to confirm the version of my PHP
 
 The LAMP stack is completely installed and operational. Apache Virtual Host that hold website files and folder is needed to test the stack with a PHP script.
 
+### Enabling PHP on the Website
+
+With the default Directory Index setings on Apache, the index.html file takes precedence. This was modifued to give precedence to the index.php file.
+
+The /etc/apache2/mods-enabled/dir.conf file was edited and the order in which the index.php file is listed within the DirectoryIndex directive was chnaged.
+
+**`sudo vim /etc/apache2/mods-enabled/dir.conf`**
+```
+<IfModule mod_dir.c
+        #Change this:
+        #DirectoryIndex index.html index.cgi index.pl index.php index.xhtml index.htm
+        #To this:
+        DirectoryIndex index.php index.html index.cgi index.pl index.xhtml index.htm
+</IfModule>
+```
+
+Save and close the file, The Apache service was restarted for the changes to take effect. 
+
+**`sudo systemctl reload apache2`**
+
+A new file named index.php was created inside the projectlamp root folder
+
+**`vim /var/www/projectlamp/index.php`**
+
+The PHP code below was added to the index.php file.
+
+```
+<?php
+phpinfo();
+```
+The output is shown below
+
+<img width="469" alt="image" src="https://github.com/kalkah/project-1/assets/95209274/abdf0cc6-6234-4210-9169-05d6ad375c1a">
+
+The command below was used to remove the file because it contains sensitive information about my server and php site config. 
+
+**`sudo rm /var/www/projectlamp/index.php`**
+
 ### CREATING A VIRTUAL HOST FOR THE WEBSITE USINF APACHE
 
 Directory was created for projectlamp
